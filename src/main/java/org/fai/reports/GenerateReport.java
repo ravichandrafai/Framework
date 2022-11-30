@@ -27,6 +27,7 @@ public final class GenerateReport {
 		if(Objects.isNull(extReport)) {
 			extReport = new ExtentReports();
 			ExtentSparkReporter sparkReporter = new ExtentSparkReporter(FrameworkConstants.getextentReportFilePath());
+			
 			extReport.attachReporter(sparkReporter);
 			sparkReporter.config().setTheme(Theme.STANDARD);
 			sparkReporter.config().setReportName(ReadProperties.get(PropertyEnums.EXTENTREPORTTITILE));

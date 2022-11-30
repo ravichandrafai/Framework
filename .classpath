@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
   <classpathentry kind="src" path="src/test/java" output="target/test-classes" including="**/*.java"/>
+  <classpathentry kind="src" path="src/test/resources" output="target/test-classes" excluding="**/*.java"/>
   <classpathentry kind="src" path="src/main/java" including="**/*.java"/>
   <classpathentry kind="src" path="src/main/resources" excluding="**/*.java"/>
   <classpathentry kind="output" path="target/classes"/>
+  <classpathentry kind="var" path="M2_REPO/javax/mail/mail/1.4/mail-1.4.jar" sourcepath="M2_REPO/javax/mail/mail/1.4/mail-1.4-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/javax/activation/activation/1.1/activation-1.1.jar" sourcepath="M2_REPO/javax/activation/activation/1.1/activation-1.1-sources.jar"/>
   <classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
   <classpathentry kind="var" path="M2_REPO/org/seleniumhq/selenium/selenium-java/4.5.3/selenium-java-4.5.3.jar" sourcepath="M2_REPO/org/seleniumhq/selenium/selenium-java/4.5.3/selenium-java-4.5.3-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/seleniumhq/selenium/selenium-api/4.5.3/selenium-api-4.5.3.jar" sourcepath="M2_REPO/org/seleniumhq/selenium/selenium-api/4.5.3/selenium-api-4.5.3-sources.jar"/>
@@ -105,4 +108,8 @@
   <classpathentry kind="var" path="M2_REPO/com/asprise/ocr/java-ocr-api/15.3.0.3/java-ocr-api-15.3.0.3.jar" sourcepath="M2_REPO/com/asprise/ocr/java-ocr-api/15.3.0.3/java-ocr-api-15.3.0.3-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/postgresql/postgresql/42.2.16/postgresql-42.2.16.jar" sourcepath="M2_REPO/org/postgresql/postgresql/42.2.16/postgresql-42.2.16-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/com/jcraft/jsch/0.1.55/jsch-0.1.55.jar" sourcepath="M2_REPO/com/jcraft/jsch/0.1.55/jsch-0.1.55-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/com/googlecode/json-simple/json-simple/1.1.1/json-simple-1.1.1.jar" sourcepath="M2_REPO/com/googlecode/json-simple/json-simple/1.1.1/json-simple-1.1.1-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/junit/junit/4.10/junit-4.10.jar" sourcepath="M2_REPO/junit/junit/4.10/junit-4.10-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/hamcrest/hamcrest-core/1.1/hamcrest-core-1.1.jar" sourcepath="M2_REPO/org/hamcrest/hamcrest-core/1.1/hamcrest-core-1.1-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/json/json/20220924/json-20220924.jar" sourcepath="M2_REPO/org/json/json/20220924/json-20220924-sources.jar"/>
 </classpath>

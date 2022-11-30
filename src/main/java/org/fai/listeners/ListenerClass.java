@@ -3,6 +3,7 @@ package org.fai.listeners;
 import java.util.Arrays;
 
 import org.fai.constants.FrameworkConstants;
+import org.fai.mail.SendMail;
 import org.fai.reports.ExtentLogger;
 import org.fai.reports.FrameworkLogger;
 import org.fai.reports.GenerateReport;
@@ -40,6 +41,7 @@ public class ListenerClass implements ITestListener , ISuiteListener{
 	public void onFinish(ISuite suite) {
 			FrameworkLogger.logTrace("inside onFinish method of ListenerClass");
 			GenerateReport.flushReports();
+			SendMail.sendEmail();
 	}
 	
 	

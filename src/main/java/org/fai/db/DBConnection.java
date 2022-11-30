@@ -2,10 +2,16 @@ package org.fai.db;
 
 	
 import java.sql.Connection;
-	
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 import com.jcraft.jsch.JSch;
 import com.jcraft.jsch.JSchException;
@@ -30,8 +36,9 @@ public class DBConnection {
 		    session.setPortForwardingL(nLocalPort, strRemoteHost, nRemotePort);
 		  }
 		   
-		  public static void main(String[] args) throws SQLException
+		  public static void main(String[] args) throws SQLException, ParseException
 		  {
+			  String config = null;
 		    try
 		    {
 		      String strSshUser = "ubuntu";                  // SSH loging username
@@ -45,14 +52,32 @@ public class DBConnection {
 		     
 		      String dbName = "xtract";
 		      String JDBCURL = "jdbc:postgresql://"+strRemoteHost+":"+nLocalPort+"/"+dbName;
-		       
+		      String query = "select category_name ,customer_id ,configurations  from master_category where category_name =? and customer_id =?";
 		     
 		      DBConnection.doSshTunnel(strSshUser,strSshHost, nSshPort, strRemoteHost, nLocalPort, nRemotePort);
 		  	         
 		      Class.forName("org.postgresql.Driver");
 		      con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/xtract", strDbUser, strDbPassword);
-		      System.out.println("After get connection");
-		      con.close();
+		      
+		      PreparedStatement preparedStatement = con.prepareStatement(query);
+		      preparedStatement.setString(1, "WCAB");
+		      preparedStatement.setInt(2, 471);
+		      ResultSet rs = preparedStatement.executeQuery();
+		      
+		      while (rs.next()) {
+	                String catname= rs.getString("category_name");
+	                int id = rs.getInt("customer_id");
+	               config = rs.getString("configurations");
+	                
+	               System.out.println(catname + "," + id + "," + config);
+	                
+	            }
+		     
+		     // Get JSON object from JSON array.
+				JSONObject jsonObject = new JSONObject(config);
+				System.out.println("Second object:"+jsonObject.getJSONObject("order"));
+				System.out.println("Second object:"+jsonObject.getJSONObject("naming_convention"));
+		      	      
 		    }
 		    catch( Exception e )
 		    {
@@ -63,7 +88,7 @@ public class DBConnection {
 		      System.exit(0);
 		      con.close();
 		    }
-		  }
+		  
 }
-	
+}
 
