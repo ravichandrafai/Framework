@@ -15,6 +15,8 @@ import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
 import org.fai.enums.PropertyEnums;
+import org.fai.reports.FrameworkLogger;
+import org.fai.utils.DecodeUtils;
 import org.fai.utils.ReadProperties;
 
 public class SendMail {
@@ -22,14 +24,16 @@ public class SendMail {
      public static void sendEmail(){
 
     	Session session;
+    	FrameworkLogger.logInfo("Start of send mail");
         String host = ReadProperties.get(PropertyEnums.SMTPHOST);
         String port = ReadProperties.get(PropertyEnums.SMTPPORT);
         String sender = ReadProperties.get(PropertyEnums.SENDER);
-        String pass=ReadProperties.get(PropertyEnums.SENDERPWD);
+        String encryptedpass=ReadProperties.get(PropertyEnums.SENDERPWD);
         String subject = ReadProperties.get(PropertyEnums.SUBJECT);
         String mailBody = ReadProperties.get(PropertyEnums.MAILTEXT);
         String recipients = ReadProperties.get(PropertyEnums.RECIPIENTS);
         String filePath = ReadProperties.get(PropertyEnums.REPORTLOCATION);
+        String decryptedPass= DecodeUtils.getDecodedString(encryptedpass);
         String      auth="tls";
         boolean     doAuth = !"none".equals(auth);
         boolean     useTLS = "tls".equals(auth);
@@ -56,10 +60,10 @@ public class SendMail {
             properties.put("mail.smtp.auth", "true");
 
              session = Session.getInstance(properties, new javax.mail.Authenticator() {
-
+            	 
                 protected PasswordAuthentication getPasswordAuthentication() {
 
-                    return new PasswordAuthentication(sender, pass);
+                    return new PasswordAuthentication(sender, decryptedPass);
     
                 }
 
@@ -69,7 +73,7 @@ public class SendMail {
             session = Session.getInstance(properties);
 
         // Used to debug SMTP issues
-        session.setDebug(true);
+        //session.setDebug(true);
 
         try {
             // Create a default MimeMessage object.
@@ -109,6 +113,7 @@ public class SendMail {
             mex.printStackTrace();
         
         }
-
+        FrameworkLogger.logInfo("End of mail");
     }
+     
 }

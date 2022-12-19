@@ -1,5 +1,8 @@
 package org.fai.utils;
 
+
+import java.util.Arrays;
+
 import org.fai.driver.DriverManager;
 import org.fai.reports.ExtentLogger;
 import org.fai.reports.FrameworkLogger;
@@ -50,5 +53,12 @@ public final class JSExecutor {
 		WebElement element = DriverManager.getDriver().findElement(by);
 		 String mouseOverScript = "if(document.createEvent){var evObj = document.createEvent('MouseEvents');evObj.initEvent('mouseover',true, false); arguments[0].dispatchEvent(evObj);} else if(document.createEventObject) { arguments[0].fireEvent('onmouseover');}";
 			((JavascriptExecutor)DriverManager.getDriver()).executeScript(mouseOverScript,element);
+	}
+	public static void setAttributValue(By by, String text) {
+		
+		WebElement element = DriverManager.getDriver().findElement(by);
+		
+		((JavascriptExecutor)DriverManager.getDriver()).executeScript("arguments[0].setAttribute('value','"+ text +"')", element);
+		((JavascriptExecutor)DriverManager.getDriver()).executeScript("arguments[0].dispatchEvent(new Event('change'))", element);		
 	}
 }

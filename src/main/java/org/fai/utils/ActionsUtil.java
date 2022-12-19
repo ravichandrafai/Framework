@@ -19,8 +19,7 @@ public class ActionsUtil {
 		action= new Actions(DriverManager.getDriver());
 		action.doubleClick(element).perform();;
 	}
-	
-		public static void dragAndDrop(By sourceBy, By destinationBy) {
+	public static void dragAndDrop(By sourceBy, By destinationBy) {
 			action= new Actions(DriverManager.getDriver());
 		//WebElement on which drag and drop operation needs to be performed
 			
@@ -42,7 +41,6 @@ public class ActionsUtil {
 		dragAndDrop.perform();
 		
 	}
-	
 	public static void moveToElement(By by) {
 		WebElement element = DriverManager.getDriver().findElement(by);
 		Actions actions = new Actions(DriverManager.getDriver());
@@ -50,7 +48,6 @@ public class ActionsUtil {
 		actions.perform();
 		ExtentLogger.pass("Moved to element "+by,true);
 	}
-	
 	public static void mouseHover(By by) {
 		WebElement element = DriverManager.getDriver().findElement(by);
 		action.moveToElement(element).build().perform();
@@ -66,7 +63,8 @@ public class ActionsUtil {
 		Actions actions = new Actions(DriverManager.getDriver());
 		actions.sendKeys(Keys.ENTER).perform();
 		
-	}public static void moveToEleAndClick(By by) {
+	}
+	public static void moveToEleAndClick(By by) {
 		WebElement elt= DriverManager.getDriver().findElement(by);
 		Actions action = new Actions(DriverManager.getDriver());
 		action.moveToElement(elt).click().build().perform();
@@ -82,7 +80,6 @@ public class ActionsUtil {
         .perform();
 		
 	}
-	
 	public static void scrollUP(WebElement element) {
 		
 		int	deltaY= element.getRect().y;
@@ -91,7 +88,7 @@ public class ActionsUtil {
         .perform();
 		
 	}
-public static void scrollDown(By by) {
+	public static void scrollDown(By by) {
 		
 		WebElement elt= DriverManager.getDriver().findElement(by);
 		int	deltaY= elt.getRect().y;
@@ -104,6 +101,6 @@ public static void scrollDown(By by) {
 		WebElement element = DriverManager.getDriver().findElement(by);
 		Actions actions = new Actions(DriverManager.getDriver());
 		actions.moveToElement(element).sendKeys(text).perform();
-		ExtentLogger.pass("Select text "+text,true);
+		ExtentLogger.pass("Entered text "+text,true);
 	}
 }

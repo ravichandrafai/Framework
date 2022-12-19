@@ -42,6 +42,8 @@ public class ListenerClass implements ITestListener , ISuiteListener{
 			FrameworkLogger.logTrace("inside onFinish method of ListenerClass");
 			GenerateReport.flushReports();
 			SendMail.sendEmail();
+			
+			
 	}
 	
 	

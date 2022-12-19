@@ -20,19 +20,23 @@ public final class FrameworkConstants {
 	private FrameworkConstants() {
 
 	}
-	
-	private static String RESOURCESPATH = System.getProperty("user.dir")+"/src/test/resources";
+
+	private static String RESOURCESPATH = System.getProperty("user.dir")+"/config";
 	private static String CHROMEDRIVERPATH = RESOURCESPATH+"/executables/chromedriver.exe";
 	private static String FIREFOXDRIVERPATH = RESOURCESPATH+"/executables/geckodriver.exe";
 	private static String CONFIGFILEPATH = RESOURCESPATH+"/config/config.properties";
-	private static int EXPLIXITWAITTIME = 45;
-	private static String EXTENTREPORTPATH = RESOURCESPATH+"/extent-test-output/";
+	private static int EXPLIXITWAITTIME = 60;
+	private static String EXTENTREPORTPATH = System.getProperty("user.dir")+"/extentReport";
 	private static String EXTENTREPORTFILEPATH ="";
 	private static String EXCELPATH = RESOURCESPATH+"/excel/testdata.xlsx";
 	private static String RUNMANAGERSHEET = "RUNMANAGER";
 	private static String TESTDATASHEET = "DATA";
+	private static String DATEFORMATSHEET = "DateFormats";
+	private static String TAXONOMYDATASHEET = "Taxonomy";
 	private static String TESTRESULTPATH = RESOURCESPATH+"/excel/";
-	private static String TESTFILESPATH = System.getProperty("user.dir")+"\\src\\test\\resources\\testFiles\\";
+	private static String TESTFILESPATH = System.getProperty("user.dir")+"\\config\\testFiles\\";
+	private static String DBKEYPATH = System.getProperty("user.dir")+"\\config\\dbkey\\";
+	private static String SALTVALUE = "FAIAUTOMATION";
 	public static int getExplicitWaitTime() {
 		FrameworkLogger.logTrace("Inside getExplicitWaitTime Name");
 		return EXPLIXITWAITTIME;
@@ -47,13 +51,13 @@ public final class FrameworkConstants {
 		FrameworkLogger.logTrace("Inside getChromrDriverPath Name");
 		return CHROMEDRIVERPATH;
 	}
-	
+
 	public static String getFirefoxDriver() {
 		FrameworkLogger.logTrace("Inside getFirefoxDriver Name");
-		
+
 		return FIREFOXDRIVERPATH;
 	}
-		
+
 	/**
 	 * 
 	 *
@@ -68,18 +72,18 @@ public final class FrameworkConstants {
 		else {
 			return EXTENTREPORTPATH+"/index.html";
 		}
-		
+
 	}
-	
+
 	public static String getextentReportFilePath() {
 		FrameworkLogger.logTrace("Inside getextentReportFilePath Name");
 		if(EXTENTREPORTFILEPATH.isEmpty()) {
 			EXTENTREPORTFILEPATH = createReportPath();
 		}
-		
-			return EXTENTREPORTFILEPATH;
-		
-		
+
+		return EXTENTREPORTFILEPATH;
+
+
 	}
 	/**
 	 * Extent Report path where the index.html file will be generated.
@@ -88,7 +92,7 @@ public final class FrameworkConstants {
 		FrameworkLogger.logTrace("Inside getExcelFilePath Name");
 		return EXCELPATH;
 	}
-	
+
 	public static String getRunmanagerSheetName() {
 		FrameworkLogger.logTrace("Inside getRunManagersheet Name");
 		return RUNMANAGERSHEET;
@@ -97,13 +101,28 @@ public final class FrameworkConstants {
 		FrameworkLogger.logTrace("Inside getTestDataSheetName Name");
 		return TESTDATASHEET;
 	}
-	
+
 	public static String getTestResultPath() {
-		
+
 		return TESTRESULTPATH;
 	}
 	public static String getUploadFilePath() {
-		
+
 		return TESTFILESPATH;
+	}
+	public static String getDBKeyPath() {
+		return DBKEYPATH;
+	}
+	public static String getDateFormatsSheetName() {
+
+		return DATEFORMATSHEET;
+	}
+
+	public static String getTaxonomyDetailsSheetName() {
+
+		return TAXONOMYDATASHEET;
+	}
+	public static String getSaltValue() {
+		return SALTVALUE;
 	}
 }

@@ -9,6 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
 /**
  * 
@@ -39,7 +40,7 @@ public final class Driver {
 	 * @param browser Value will be passed from {@link org.fai.tests.BaseTest}. Values can be chrome and firefox
 	 * 
 	 */
-	public static WebDriver initDriver(String browser) {
+	public static WebDriver initDriver(String browser,String mode) {
 		FrameworkLogger.logTrace("Inside initDriver method");
 		if(Objects.isNull(DriverManager.getDriver())) {
 			FrameworkLogger.logInfo("Driver instance is null hence inside init driver");
@@ -47,6 +48,10 @@ public final class Driver {
 				FrameworkLogger.logTrace("Inside if browser is chrome method");
 				System.setProperty("webdriver.chrome.driver",FrameworkConstants.getChromrDriverPath());
 				ChromeOptions option=new ChromeOptions();
+				
+				if(mode.equals("inconginto")) {
+					option.addArguments("--incognito");
+				}
 				option.setPageLoadStrategy(PageLoadStrategy.NONE);
 				DriverManager.setDriver(new ChromeDriver(option));
 				DriverManager.getDriver().manage().window().maximize();

@@ -12,6 +12,7 @@ import org.fai.utils.ReadProperties;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.aventstack.extentreports.reporter.configuration.Theme;
+import com.aventstack.extentreports.reporter.configuration.ViewName;
 
 public final class GenerateReport {
 
@@ -31,6 +32,7 @@ public final class GenerateReport {
 			extReport.attachReporter(sparkReporter);
 			sparkReporter.config().setTheme(Theme.STANDARD);
 			sparkReporter.config().setReportName(ReadProperties.get(PropertyEnums.EXTENTREPORTTITILE));
+			sparkReporter.viewConfigurer().viewOrder().as(new ViewName[] {ViewName.DASHBOARD,ViewName.TEST}).apply();
 			//sparkReporter.config().setDocumentTitle("Automation execution report");
 			//sparkReporter.config().setReportName("Extract Automation");
 			sparkReporter.config().setReportName(ReadProperties.get(PropertyEnums.EXTENTREPORTNAME));
